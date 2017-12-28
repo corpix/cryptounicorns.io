@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Yet another cryptocurrency portfolio application (looking for contributors)</title>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="vendor/reveal.js-3.4.1/css/reveal.css"/>
+
+<link rel="stylesheet" href="vendor/reveal.js-3.4.1/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./vendor/reveal-fixes.css"/>
+<link rel="stylesheet" href="vendor/reveal.js-3.4.1/lib/css/docco.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'vendor/reveal.js-3.4.1/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Yet another cryptocurrency portfolio application (looking for contributors)</h1><p class="date">Created: 2017-12-28 Thu 19:50</p>
+</section>
+
+<section>
+<section id="slide-org9e3a419">
+<h2 id="org9e3a419">Short introduction</h2>
+</section>
+</section>
+<section>
+<section id="slide-org113e128">
+<h2 id="org113e128">Who we are?</h2>
+</section>
+</section>
+<section>
+<section id="slide-orgdef4fb6">
+<h2 id="orgdef4fb6">What we are working on?</h2>
+<aside class="notes">
+<p>
+How idea of this application emerged
+</p>
+
+</aside>
+
+<p>
+Desktop application for cryptocurrency price tracking across multiple exchanges.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org8d1e13f">
+<h2 id="org8d1e13f">What it looks like</h2>
+
+<div class="figure">
+<p><img src="./c34c3-app.png" alt="c34c3-app.png" height="500" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org89bfaa4">
+<h2 id="org89bfaa4">Features</h2>
+<ul>
+<li>unified API across multiple exchanges</li>
+<li>portfolio tracking</li>
+<li>alerts</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org6bc46b2">
+<h2 id="org6bc46b2">Could be useful for</h2>
+<ul>
+<li>traders</li>
+<li>investors</li>
+<li>cryptocurrency enthusiasts</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org1acb09c">
+<h2 id="org1acb09c">What it looks like from technical point of view</h2>
+<ul>
+<li>data gathering api</li>
+<li>data processing queue</li>
+<li>client api</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orge077d43">
+<h2 id="orge077d43">Architecture diagram</h2>
+
+<div class="figure">
+<p><img src="c34c3-architecture-diagram.png" alt="c34c3-architecture-diagram.png" />
+</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orga07cb2a">
+<h2 id="orga07cb2a">Demo time!</h2>
+<ul>
+<li>client-side design decisions</li>
+<li>using web technologies for desktop app(electron)</li>
+<li>clojure REPL magic</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org4ed2e74">
+<h2 id="org4ed2e74">We are on very early stage and looking for contributors</h2>
+<p>
+designers, testers, developers are welcome
+</p>
+
+<p>
+(we are opensource, MIT-licensed)
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="vendor/reveal.js-3.4.1/lib/js/head.min.js"></script>
+<script src="vendor/reveal.js-3.4.1/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'vendor/reveal.js-3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: 'vendor/reveal.js-3.4.1/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

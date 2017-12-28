@@ -1,0 +1,92 @@
+#+REVEAL_ROOT: vendor/reveal.js-3.4.1
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+REVEAL_THEME: simple
+#+REVEAL_TRANS: linear
+#+REVEAL_PLUGINS: (highlight notes)
+#+REVEAL_EXTRA_CSS: ./vendor/reveal-fixes.css
+#+REVEAL_HIGHLIGHT_CSS: %r/lib/css/docco.css
+
+#+Title: Yet another cryptocurrency portfolio application (looking for contributors)
+#+Author:
+#+Email:
+
+* Short introduction
+* Who we are?
+* What we are working on?
+  #+BEGIN_NOTES
+  How idea of this application emerged
+  #+END_NOTES
+
+  Desktop application for cryptocurrency price tracking across multiple exchanges.
+
+* What it looks like
+
+  #+ATTR_HTML: :height 500
+  [[./c34c3-app.png]]
+
+* Features
+  - unified API across multiple exchanges
+  - portfolio tracking
+  - alerts
+
+* Could be useful for
+  - traders
+  - investors
+  - cryptocurrency enthusiasts
+
+* What it looks like from technical point of view
+  - data gathering api
+  - data processing queue
+  - client api
+* Architecture diagram
+   #+BEGIN_SRC dot :file c34c3-architecture-diagram.png
+   digraph ArchitectureHighlevel {
+      rankdir = LR;
+      mq [label = "message queue"];
+     subgraph cluster_fetching {
+         mole [label = "mole"];
+         bitfinex         [label = "Bitfinex"];
+         gdax             [label = "Gdax"];
+         bittrex          [label = "Bittrex"];
+         anyOtherExchange [label = "..."];
+         bitfinex         -> mole [label = "read"];
+         gdax             -> mole [label = "read"];
+         bittrex          -> mole [label = "read"];
+         anyOtherExchange -> mole [label = "read"];
+     }
+     subgraph cluster_clients {
+         clientN [label = "client ###"];
+     }
+     subgraph cluster_storage {
+         gluttony  [label = "gluttony"];
+         mammoth   [label = "mammoth"];
+         database  [label = "database"];
+         gluttony -> database [label = "write"];
+         mammoth -> database [label = "read"];
+         clientN -> mammoth [label = "HTTP GET"];
+     }
+     subgraph cluster_serving {
+         platypus  [label = "platypus"];
+         clientN -> platypus [label = "duplex(ws)"];
+     }
+     platypus -> mq [label = "read(nsq)"];
+     gluttony -> mq [label = "read(nsq)"];
+     mole -> mq [label = "write(nsq)"];
+   }
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:c34c3-architecture-diagram.png]]
+
+
+* Demo time!
+  - client-side design decisions
+  - using web technologies for desktop app(electron)
+  - clojure REPL magic
+
+* We are on very early stage and looking for contributors
+
+  designers, testers, developers are welcome
+
+  (we are opensource, MIT-licensed)

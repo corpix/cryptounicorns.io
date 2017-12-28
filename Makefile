@@ -20,6 +20,7 @@ install:
 	mkdir -p $(DESTDIR)
 	cp -f  index.html $(DESTDIR)/
 	cp -rf images     $(DESTDIR)/
+	cp -rf talks      $(DESTDIR)/
 
 .PHONY: clean
 clean:

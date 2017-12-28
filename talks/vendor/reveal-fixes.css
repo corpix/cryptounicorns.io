@@ -1,0 +1,21 @@
+html body .reveal,
+html body .reveal * {
+    font-family: Monospace;
+}
+
+#sec-title-slide h1.title {
+    font-size: 70px;
+}
+
+#sec-title-slide h2.author {
+    font-size: 1.11em;
+}
+
+#sec-title-slide .date {
+    display: none;
+}
+
+.reveal section img {
+    border: 0 !important;
+    box-shadow: none !important;
+}
