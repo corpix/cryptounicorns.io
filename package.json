@@ -1,0 +1,23 @@
+{
+  "name": "cryptounicorns.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "svgo": "^1.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crpytounicorns/cryptounicorns.io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crpytounicorns/cryptounicorns.io/issues"
+  },
+  "homepage": "https://github.com/crpytounicorns/cryptounicorns.io#readme"
+}
