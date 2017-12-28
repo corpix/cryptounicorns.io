@@ -3,8 +3,14 @@ with import <nixpkgs>{};
 
 stdenv.mkDerivation rec {
   name = "cryptounicorns.io-unstable-${version}";
-  version = "2017-11-14";
+  version = "development";
 
   system = builtins.currentSystem;
   src = ./.;
+  builder = builtins.toFile "builder.sh" ''
+    source $stdenv/setup
+    cd $src
+    make
+    make install
+  '';
 }

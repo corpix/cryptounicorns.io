@@ -8,12 +8,18 @@ DESTDIR ?= $(out)
 all: build
 
 .PHONY: build
-build: $(modules_bin)
-	$(modules_bin)/svgo -i images/logo.plain.svg -o images/logo.svgo.svg
+build:
+	@true
+
+.PHONY: optimize
+optimize: $(modules_bin)
+	svgo -i images/logo.plain.svg -o images/logo.svgo.svg
 
 .PHONY: install
 install:
-	cp -f index.html $(DESTDIR)
+	mkdir -p $(DESTDIR)
+	cp -f  index.html $(DESTDIR)/
+	cp -rf images     $(DESTDIR)/
 
 .PHONY: clean
 clean:
