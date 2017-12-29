@@ -39,36 +39,37 @@
   - data gathering api
   - data processing queue
   - client api
+
 * Architecture diagram
    #+BEGIN_SRC dot :file c34c3-architecture-diagram.png
    digraph ArchitectureHighlevel {
-      rankdir = LR;
-      mq [label = "message queue"];
+     rankdir = LR;
+     mq [label = "message queue"];
      subgraph cluster_fetching {
-         mole [label = "mole"];
-         bitfinex         [label = "Bitfinex"];
-         gdax             [label = "Gdax"];
-         bittrex          [label = "Bittrex"];
-         anyOtherExchange [label = "..."];
-         bitfinex         -> mole [label = "read"];
-         gdax             -> mole [label = "read"];
-         bittrex          -> mole [label = "read"];
-         anyOtherExchange -> mole [label = "read"];
+       mole [label = "mole"];
+       bitfinex         [label = "Bitfinex"];
+       gdax             [label = "Gdax"];
+       bittrex          [label = "Bittrex"];
+       anyOtherExchange [label = "..."];
+       bitfinex         -> mole [label = "read"];
+       gdax             -> mole [label = "read"];
+       bittrex          -> mole [label = "read"];
+       anyOtherExchange -> mole [label = "read"];
      }
      subgraph cluster_clients {
-         clientN [label = "client ###"];
+       clientN [label = "client ###"];
      }
      subgraph cluster_storage {
-         gluttony  [label = "gluttony"];
-         mammoth   [label = "mammoth"];
-         database  [label = "database"];
-         gluttony -> database [label = "write"];
-         mammoth -> database [label = "read"];
-         clientN -> mammoth [label = "HTTP GET"];
+       gluttony  [label = "gluttony"];
+       mammoth   [label = "mammoth"];
+       database  [label = "database"];
+       gluttony -> database [label = "write"];
+       mammoth -> database [label = "read"];
+       clientN -> mammoth [label = "HTTP GET"];
      }
      subgraph cluster_serving {
-         platypus  [label = "platypus"];
-         clientN -> platypus [label = "duplex(ws)"];
+       platypus  [label = "platypus"];
+       clientN -> platypus [label = "duplex(ws)"];
      }
      platypus -> mq [label = "read(nsq)"];
      gluttony -> mq [label = "read(nsq)"];
@@ -86,10 +87,16 @@
   - clojure REPL magic
 
 * We are on very early stage and looking for contributors
-
   designers, testers, developers are welcome
 
   (we are opensource, MIT-licensed)
+
+* Roadmap
+  - support more exchanges
+  - support charts in desktop app
+  - code, algorithms polishing and refactoring
+  - alpha version
+  - feedback gathering and then planing further
 
 * Questions?
 
