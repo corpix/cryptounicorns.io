@@ -47,10 +47,10 @@
        gdax             [label = "Gdax"];
        bittrex          [label = "Bittrex"];
        anyOtherExchange [label = "..."];
-       bitfinex         -> mole [label = "read"];
-       gdax             -> mole [label = "read"];
-       bittrex          -> mole [label = "read"];
-       anyOtherExchange -> mole [label = "read"];
+       mole -> bitfinex [label = "read"];
+       mole -> gdax [label = "read"];
+       mole -> bittrex [label = "read"];
+       mole -> anyOtherExchange [label = "read"];
      }
      subgraph cluster_clients {
        clientN [label = "client(-s)"];
@@ -60,16 +60,16 @@
        mammoth   [label = "query API"];
        database  [label = "database"];
        gluttony -> database [label = "write"];
-       mammoth -> database [label = "read"];
-       clientN -> mammoth [label = "query data"];
+       database -> mammoth [label = "read"];
+       clientN  -> mammoth [label = "query data"];
      }
      subgraph cluster_serving {
        platypus  [label = "data proxy"];
        clientN -> platypus [label = "websocket"];
      }
-     platypus -> mq [label = "read from MQ"];
-     gluttony -> mq [label = "read from MQ"];
-     mole -> mq [label = "write to MQ"];
+     mq -> platypus [label = "read"];
+     mq -> gluttony [label = "read"];
+     mole -> mq [label = "write"];
    }
    #+END_SRC
 
