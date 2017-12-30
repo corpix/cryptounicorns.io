@@ -11,8 +11,9 @@
 #+Author:
 #+Email:
 
-* Short introduction
-* Who we are?
+* Facts
+  - 1300+ cryptocurrencies and growing :: source: wikipedia
+  - ~100 cryptocurrency exchanges :: source: coinmarketcap
 * What we are working on?
   #+BEGIN_NOTES
   How idea of this application emerged
@@ -25,28 +26,23 @@
   #+ATTR_HTML: :height 500
   [[./c34c3-app.png]]
 
-* Features
+* Goals
   - unified API across multiple exchanges
-  - portfolio tracking
-  - alerts
-
-* Could be useful for
-  - traders
-  - investors
-  - cryptocurrency enthusiasts
-
+  - easy portfolio tracking
+  - agile alerts
 * What it looks like from technical point of view
-  - data gathering api
-  - data processing queue
-  - client api
+  - gather data
+  - normalize it
+  - store into database
+  - push to client
 
-* Architecture diagram
+* Kinda like this
    #+BEGIN_SRC dot :file c34c3-architecture-diagram.png
    digraph ArchitectureHighlevel {
      rankdir = LR;
      mq [label = "message queue"];
      subgraph cluster_fetching {
-       mole [label = "mole"];
+       mole [label = "data gathering"];
        bitfinex         [label = "Bitfinex"];
        gdax             [label = "Gdax"];
        bittrex          [label = "Bittrex"];
@@ -57,35 +53,30 @@
        anyOtherExchange -> mole [label = "read"];
      }
      subgraph cluster_clients {
-       clientN [label = "client ###"];
+       clientN [label = "client(-s)"];
      }
      subgraph cluster_storage {
-       gluttony  [label = "gluttony"];
-       mammoth   [label = "mammoth"];
+       gluttony  [label = "data storage"];
+       mammoth   [label = "query API"];
        database  [label = "database"];
        gluttony -> database [label = "write"];
        mammoth -> database [label = "read"];
-       clientN -> mammoth [label = "HTTP GET"];
+       clientN -> mammoth [label = "query data"];
      }
      subgraph cluster_serving {
-       platypus  [label = "platypus"];
-       clientN -> platypus [label = "duplex(ws)"];
+       platypus  [label = "data proxy"];
+       clientN -> platypus [label = "websocket"];
      }
-     platypus -> mq [label = "read(nsq)"];
-     gluttony -> mq [label = "read(nsq)"];
-     mole -> mq [label = "write(nsq)"];
+     platypus -> mq [label = "read from MQ"];
+     gluttony -> mq [label = "read from MQ"];
+     mole -> mq [label = "write to MQ"];
    }
    #+END_SRC
 
    #+RESULTS:
    [[file:c34c3-architecture-diagram.png]]
 
-
 * Demo time!
-  - client-side design decisions
-  - using web technologies for desktop app(electron)
-  - clojure REPL magic
-
 * We are on very early stage and looking for contributors
   designers, testers, developers are welcome
 
@@ -93,11 +84,12 @@
 
 * Roadmap
   - support more exchanges
-  - support charts in desktop app
-  - code, algorithms polishing and refactoring
-  - alpha version
-  - feedback gathering and then planing further
+  - improve code quality
+  - builds for most desktop platforms
+  - gain more information from markets
 
-* Questions?
+* Thank you
 
-  Our org on GitHub https://github.com/cryptounicorns
+  Questions?
+
+  Find us on GitHub https://github.com/cryptounicorns
