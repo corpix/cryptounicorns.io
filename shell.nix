@@ -1,6 +1,6 @@
 with import <nixpkgs> {};
 stdenv.mkDerivation {
-  name = "cryptounicorns-shell";
+  name = "nix-cage-shell";
   buildInputs = [
     nodePackages.tern
     nodejs-8_x
