@@ -13,7 +13,7 @@ build:
 
 .PHONY: optimize
 optimize: $(modules_bin)
-	svgo -i images/logo.plain.svg -o images/logo.svgo.svg
+	$(modules_bin)/svgo -i images/logo.plain.svg -o images/logo.svgo.svg
 
 .PHONY: install
 install:
