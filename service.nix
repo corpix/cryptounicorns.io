@@ -6,7 +6,7 @@ with lib;
 let
   name = "cryptounicorns-io";
   cfg = config.services."${name}";
-  app = pkgs.callPackage ./cryptounicorns-io.nix { };
+  app = pkgs.callPackage ./default.nix { };
 in {
   options = with types; {
     services."${name}" = {
